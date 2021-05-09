@@ -1,3 +1,8 @@
+//
+//
+//不要照抄！！不要照抄！！一定要自己看懂！！
+//
+//
 #include <bits/stdc++.h>
 using namespace std;
 
