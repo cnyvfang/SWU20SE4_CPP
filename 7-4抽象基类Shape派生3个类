@@ -1,0 +1,69 @@
+//
+//
+//
+//请勿直接复制粘贴！！应当自己看懂代码！！
+//
+//
+#include <iostream>
+
+using namespace std;
+
+class Shape {
+	protected:
+		double l1;
+		double l2;
+	public:
+		double area;
+		Shape(double a = 0, double b = 0) {
+			l1 = a;
+			l2 = b;
+		}
+		virtual double print() const { return 0.00; };
+
+};
+
+class Rectangle :public Shape {
+	public:
+		Rectangle(double a,double b):Shape(a,b){}
+		double print()const
+		{
+			return l1 * l2;
+		}
+};
+
+class Triangle :public Shape {
+	public:
+		Triangle(double a, double b) :Shape(a, b) {}
+		double print()const
+		{
+			return 0.5 * l1 * l2;
+		}
+};
+
+class Circle :public Shape {
+	public:
+		Circle(double a) :Shape(a) {}
+		double print() const 
+		{ 
+			return 3.14159 * l1 * l1; 
+		}
+};
+
+void print(const Shape& a) {
+	printf("%.2lf\n", a.print());
+}
+
+int main()
+{
+	double a, b;
+	cin >> a;
+	Circle c(a);
+	cin >> a >> b;
+	Rectangle r(a,b);
+	cin >> a >> b;
+	Triangle t(a, b);
+	print(c);
+	print(r);
+	print(t);
+
+}
