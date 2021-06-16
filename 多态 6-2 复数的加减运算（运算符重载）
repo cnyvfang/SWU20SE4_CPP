@@ -1,0 +1,49 @@
+#include <iostream>
+
+using namespace std;
+
+class CComplex {
+    private:
+        double real;
+        double image;
+    public:
+        CComplex(double a = 0, double b = 0) :real(a), image(b) {
+
+        }
+        friend ostream& operator<<(ostream& output, const CComplex& a) {
+            if (a.image >= 0) {
+                output << a.real << "+" << a.image << "i" << endl;
+            }
+            else {
+                output << a.real  << a.image << "i" << endl;
+            }
+            return output;
+        }
+        CComplex operator+(const CComplex& a) {
+            CComplex c;
+            c.real = this->real + a.real;
+            c.image = this->image + a.image;
+            return c;
+        }
+        CComplex operator-(const CComplex& a) {
+            CComplex c;
+            c.real = this->real - a.real;
+            c.image = this->image - a.image;
+            return c;
+        }
+};
+
+
+int main() {
+    double r1, r2, i1, i2;
+    cin >> r1 >> i1;
+    cin >> r2 >> i2;
+    CComplex c1(r1, i1), c2(r2, i2), c3, c4;
+    cout << c1;
+    cout << c2;
+    c3 = c1 + c2;
+    cout << c3;
+    c4 = c1 - c2;
+    cout << c4;
+    return 0;
+}
