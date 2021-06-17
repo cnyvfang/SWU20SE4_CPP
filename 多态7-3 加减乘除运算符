@@ -1,0 +1,134 @@
+//
+//
+//请勿直接复制粘贴！！应当自己看懂代码！！
+//
+//
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+class CComplex {
+private:
+    double real;
+    double image;
+public:
+    CComplex(double a = 0, double b = 0) :real(a), image(b) {
+
+    }
+    
+    friend ostream& operator<<(ostream& output, const CComplex& a) {
+        output.setf(ios::fixed);
+        output <<"(" << setprecision(2) << a.real << "," << setprecision(2) << a.image << "i" <<")"<< endl;
+        return output;
+    }
+    CComplex operator+(const CComplex& a) {
+        CComplex c;
+        c.real = this->real + a.real;
+        c.image = this->image + a.image;
+        return c;
+    }
+    CComplex operator-(const CComplex& a) {
+        CComplex c;
+        c.real = this->real - a.real;
+        c.image = this->image - a.image;
+        return c;
+    }
+    CComplex operator*(const CComplex& a) {
+        CComplex c;
+        c.real = this->real * a.real - this->image * a.image;
+        c.image = this->image * a.real + this->real * a.image;
+        return c;
+    }
+    CComplex operator/(const CComplex& a) {
+        CComplex c;
+        c.real = ((this->real * a.real) + (this->image * a.image)) / ((a.image * a.image) + (a.real * a.real));
+        c.image = ((this->image * a.real) - (this->real * a.image)) / ((a.image * a.image) + (a.real * a.real));
+        return c;
+    }
+    CComplex operator+(double&a) {
+        CComplex c;
+        c.real = this->real + a;
+        c.image = this->image;
+        return c;
+    }
+    CComplex operator-(double& a) {
+        CComplex c;
+        c.real = this->real - a;
+        c.image = this->image;
+        return c;
+    }
+    CComplex operator*(double& a) {
+        CComplex c;
+        c.real = this->real * a;
+        c.image = this->image * a;
+        return c;
+    }
+    CComplex operator/(double& a) {
+        CComplex c;
+        c.real = this->real / a;
+        c.image = this->image / a;
+        return c;
+    }
+    friend CComplex operator+(double &a, const CComplex& x) {
+        CComplex c;
+        c.real = x.real + a;
+        c.image = x.image;
+        return c;
+    }
+    friend CComplex operator-(double& a, const CComplex& x) {
+        CComplex c;
+        c.real = a - x.real;
+        c.image = -x.image;
+        return c;
+    }
+    friend CComplex operator*(double& a, const CComplex& x) {
+        CComplex c;
+        c.real = x.real * a;
+        c.image = x.image * a;
+        return c;
+    }
+    friend CComplex operator/(double& a, const CComplex& x) {
+        CComplex c;
+        c.real = (x.real * a)  / ((x.image * x.image) + (x.real * x.real));
+        c.image = -(x.image * a) / ((x.image * x.image) + (x.real * x.real));
+        return c;
+    }
+};
+
+
+
+int main() {
+    double r1, r2, i1, i2, num;
+    cin >> r1 >> i1;
+    cin >> r2 >> i2;
+    cin >> num;
+    CComplex c1(r1,i1), c2(r2,i2);
+    CComplex c3;
+    c3 = c1 + c2;
+    cout << "c1+c2=" << c3;
+    c3 = c1 - c2;
+    cout << "c1-c2=" << c3;
+    c3 = c1 * c2;
+    cout << "c1*c2=" << c3;
+    c3 = c1 / c2;
+    cout << "c1/c2=" << c3;
+    c3 = c1 + num;
+    cout << "c1+num=" << c3;
+    c3 = c1 - num;
+    cout << "c1-num=" << c3;
+    c3 = c1 * num;
+    cout << "c1*num=" << c3;
+    c3 = c1 / num;
+    cout << "c1/num=" << c3;
+    c3 = num + c1;
+    cout << "num+c1=" << c3;
+    c3 = num - c1;
+    cout << "num-c1=" << c3;
+    c3 = num * c1;
+    cout << "num*c1=" << c3;
+    c3 = num / c1;
+    cout << "num/c1=" << c3;
+
+    return 0;
+}
